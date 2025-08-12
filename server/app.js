@@ -7,7 +7,10 @@ const cors = require('cors');
 
 const app = express();
 
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+
 // ✅ Middleware
+app.use(express.json());
 const allowedOrigins = process.env.FRONTEND_URL?.split(',') || [];
 
 app.use(cors({
@@ -25,7 +28,7 @@ app.use(cors({
 }));
 
 // ✅ Database Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pizza-app', {
+mongoose.connect(process.env.MONGODB_URI ||`` ,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
